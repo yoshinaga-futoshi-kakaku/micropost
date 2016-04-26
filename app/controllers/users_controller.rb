@@ -1,4 +1,5 @@
 class UsersController < ApplicationController
+  before_action :set_users, only: [:edit, :update]
   def show
     @user = User.find(params[:id])
   end
@@ -16,11 +17,26 @@ class UsersController < ApplicationController
       render 'new'
     end
   end
+
+  def edit
+  end
+  
+  def update
+    if @user.update(user_params)
+      redirect_to user_path
+    else
+      render "edit"
+    end
+  end
   
   private
   
   def user_params
     params.require(:user).permit(:name, :email, :password,
-                                 :password_confirmation)
+                                 :password_confirmation,:age,:favorite)
+  end
+  
+  def set_users
+    @user = User.find(params[:id])
   end
 end

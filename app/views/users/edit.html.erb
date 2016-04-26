@@ -1,0 +1,8 @@
+<h1>profile edit</h1>
+<%= form_for(current_user) do |f| %>
+  <p>name: <%= f.text_field :name %></p>
+  <p>email: <%= f.text_field :email %></p>
+  <p>age: <%= f.text_field :age %></p>
+  <p>favorite: <%= f.text_area :favorite %></p>
+  <%= f.submit class: "btn btn-sm btn-primary"%>
+<% end %>
