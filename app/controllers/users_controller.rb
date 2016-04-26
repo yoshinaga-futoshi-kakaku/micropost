@@ -23,8 +23,10 @@ class UsersController < ApplicationController
   
   def update
     if @user.update(user_params)
-      redirect_to user_path
+      redirect_to user_path, notice: "ok"
     else
+      @users = User.all
+      flash.now[:alert] = "faild"
       render "edit"
     end
   end
@@ -38,5 +40,8 @@ class UsersController < ApplicationController
   
   def set_users
     @user = User.find(params[:id])
+    if current_user != @user
+      redirect_to root_path
+    end
   end
 end

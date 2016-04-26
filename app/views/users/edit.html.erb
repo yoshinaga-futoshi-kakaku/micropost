@@ -1,5 +1,15 @@
 <h1>profile edit</h1>
 <%= form_for(current_user) do |f| %>
+  <% if @user.errors.present? %>
+  <div class = "alert alert-danger">
+    <%= alert %>
+    <% @user.errors.full_messages.each do |message| %>
+    <li>
+      <%= message %>
+    </li>
+    <% end %>
+  </div>
+  <% end %>
   <p>name: <%= f.text_field :name %></p>
   <p>email: <%= f.text_field :email %></p>
   <p>age: <%= f.text_field :age %></p>
